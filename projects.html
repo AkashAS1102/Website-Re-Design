@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Maker Kootam — Community projects by TinkerHub CET. Ideas into prototypes. Projects into impact." />
+  <title>Maker Kootam — TinkerHub CET</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/about.css" />
+  <link rel="stylesheet" href="css/events.css" />
+  <link rel="stylesheet" href="css/projects.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-icon">T</div><div class="nav-logo-text">TinkerHub CET<span>College of Engineering, Trivandrum</span></div></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+      <li><a href="events.html">Events</a></li><li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="team.html">People</a></li><li><a href="history.html">History</a></li><li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="contact.html" class="btn btn-primary btn-sm">Join Us</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="events.html">Events</a>
+  <a href="projects.html" class="active">Projects</a><a href="team.html">People</a>
+  <a href="history.html">History</a><a href="contact.html">Contact</a>
+  <div class="mobile-nav-cta"><a href="contact.html" class="btn btn-primary">Join the Community →</a></div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="gradient-orb orb-green"  style="width:500px;height:500px;top:-100px;right:0;opacity:0.5;"></div>
+  <div class="gradient-orb orb-purple" style="width:300px;height:300px;bottom:0;left:0;opacity:0.4;"></div>
+  <div class="container">
+    <div class="page-hero-label">Maker Kootam</div>
+    <h1 class="display-lg reveal">
+      Ideas into <span class="highlight">prototypes</span>.<br/>Projects into impact.
+    </h1>
+    <p class="body-lg reveal reveal-delay-1" style="color:var(--text-secondary);max-width:540px;margin-top:1rem;">
+      A showcase of what the TinkerHub CET community builds — from quick experiments
+      to full products.
+    </p>
+    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:2rem;font-style:italic;max-width:480px;" class="reveal reveal-delay-2">
+      ⚠️ Projects shown are community placeholder examples. Submit your real project to be featured here.
+    </p>
+    <div style="position:absolute;top:2rem;right:2rem;opacity:0.05;font-family:var(--font-heading);font-weight:800;font-size:clamp(3rem,8vw,8rem);line-height:1;pointer-events:none;">
+      Small projects.<br/>Big possibilities!
+    </div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="projects-filters">
+  <div class="projects-filters-inner">
+    <div class="filter-chips">
+      <button class="filter-chip active" data-filter="all">All</button>
+      <button class="filter-chip" data-filter="web">Web</button>
+      <button class="filter-chip" data-filter="app">Apps</button>
+      <button class="filter-chip" data-filter="ai">AI / ML</button>
+      <button class="filter-chip" data-filter="iot">IoT</button>
+      <button class="filter-chip" data-filter="hardware">Hardware</button>
+      <button class="filter-chip" data-filter="creative">Creative</button>
+      <button class="filter-chip" data-filter="other">Other</button>
+    </div>
+    <div class="events-search">
+      <i class="fas fa-search search-icon"></i>
+      <input type="search" id="projectSearch" placeholder="Search projects…" />
+    </div>
+  </div>
+</div>
+
+<!-- FEATURED PROJECT -->
+<section class="featured-project">
+  <div class="featured-project-inner">
+    <div class="featured-img">
+      <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=700&q=80" alt="Campus Companion — Featured Project" />
+    </div>
+    <div class="featured-content">
+      <div class="featured-tags">
+        <span class="badge badge-cyan">Web</span>
+        <span class="badge badge-green">Community</span>
+      </div>
+      <h2 class="featured-title">Campus Companion</h2>
+      <p class="featured-desc">
+        A student-built web platform to help first-year students navigate campus resources,
+        events, and communities. Built collaboratively by TinkerHub CET members across different
+        years and departments. [Placeholder — submit your real project to replace this]
+      </p>
+      <div class="featured-contributors">
+        <div class="contributor-avatar" style="background:rgba(168,255,62,0.2);color:var(--accent-green);">A</div>
+        <div class="contributor-avatar" style="background:rgba(34,211,238,0.2);color:var(--accent-cyan);">B</div>
+        <div class="contributor-avatar" style="background:rgba(167,139,250,0.2);color:var(--accent-purple);">C</div>
+        <div class="contributor-avatar" style="background:rgba(59,130,246,0.2);color:var(--accent-blue);">+5</div>
+        <span class="contributors-label">8 contributors</span>
+      </div>
+      <div class="featured-links">
+        <a href="#" class="btn btn-primary btn-sm">View Project →</a>
+        <a href="#" class="btn btn-secondary btn-sm"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS GRID -->
+<section class="projects-grid-section">
+  <div class="projects-grid">
+
+    <div class="project-card" data-category="web,other" data-title="community connect">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80" alt="Community Connect" />
+        <div class="project-img-gradient"></div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags"><span class="badge badge-cyan">Web</span><span class="badge badge-green">Community</span></div>
+        <h3 class="project-title">Community Connect</h3>
+        <p class="project-desc">A digital noticeboard for student communities at CET — post events, find collaborators, share resources. [Placeholder]</p>
+        <div class="project-footer">
+          <div class="project-contributors">
+            <div class="contributor-avatar" style="font-size:0.65rem;background:rgba(168,255,62,0.15);color:var(--accent-green);">A</div>
+            <div class="contributor-avatar" style="font-size:0.65rem;background:rgba(34,211,238,0.15);color:var(--accent-cyan);">B</div>
+            <span style="font-size:0.7rem;color:var(--text-muted);margin-left:0.5rem;">4 contributors</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link-icon"><i class="fab fa-github"></i></a>
+            <a href="#" class="project-link-icon"><i class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-category="iot,hardware" data-title="smart campus prototype">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80" alt="Smart Campus Prototype" />
+        <div class="project-img-gradient"></div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags"><span class="badge badge-blue">IoT</span><span class="badge badge-teal">Hardware</span></div>
+        <h3 class="project-title">Smart Campus Prototype</h3>
+        <p class="project-desc">IoT-based monitoring system for campus energy usage with real-time dashboards and smart alerts. [Placeholder]</p>
+        <div class="project-footer">
+          <div class="project-contributors">
+            <div class="contributor-avatar" style="font-size:0.65rem;background:rgba(59,130,246,0.15);color:var(--accent-blue);">C</div>
+            <span style="font-size:0.7rem;color:var(--text-muted);margin-left:0.5rem;">3 contributors</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link-icon"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-category="ai" data-title="examhall ai">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=600&q=80" alt="ExamHall AI" />
+        <div class="project-img-gradient"></div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags"><span class="badge badge-purple">AI / ML</span><span class="badge badge-cyan">Web</span></div>
+        <h3 class="project-title">ExamHall AI</h3>
+        <p class="project-desc">Machine learning model to optimize exam hall seating allocation and minimize scheduling conflicts. [Placeholder]</p>
+        <div class="project-footer">
+          <div class="project-contributors">
+            <div class="contributor-avatar" style="font-size:0.65rem;background:rgba(167,139,250,0.15);color:var(--accent-purple);">D</div>
+            <div class="contributor-avatar" style="font-size:0.65rem;background:rgba(167,139,250,0.15);color:var(--accent-purple);">E</div>
+            <span style="font-size:0.7rem;color:var(--text-muted);margin-left:0.5rem;">5 contributors</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link-icon"><i class="fab fa-github"></i></a>
+            <a href="#" class="project-link-icon"><i class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-category="app" data-title="p2p gaming app">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&q=80" alt="P2P Gaming App" />
+        <div class="project-img-gradient"></div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags"><span class="badge badge-green">App</span><span class="badge badge-blue">Mobile</span></div>
+        <h3 class="project-title">P2P Gaming App</h3>
+        <p class="project-desc">Campus LAN gaming tournament manager app built with Flutter. Supports bracket management and live scores. [Placeholder]</p>
+        <div class="project-footer">
+          <div class="project-contributors">
+            <div class="contributor-avatar" style="font-size:0.65rem;background:rgba(168,255,62,0.15);color:var(--accent-green);">F</div>
+            <span style="font-size:0.7rem;color:var(--text-muted);margin-left:0.5rem;">2 contributors</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link-icon"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-category="hardware,iot" data-title="smart waste management">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=600&q=80" alt="Smart Waste Management" />
+        <div class="project-img-gradient"></div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags"><span class="badge badge-teal">IoT</span><span class="badge badge-green">Sustainability</span></div>
+        <h3 class="project-title">Smart Waste Management</h3>
+        <p class="project-desc">Sensor-based waste bin fill-level monitor that optimizes campus waste collection routes. [Placeholder]</p>
+        <div class="project-footer">
+          <div class="project-contributors">
+            <div class="contributor-avatar" style="font-size:0.65rem;background:rgba(20,184,166,0.15);color:var(--accent-teal);">G</div>
+            <div class="contributor-avatar" style="font-size:0.65rem;background:rgba(20,184,166,0.15);color:var(--accent-teal);">H</div>
+            <span style="font-size:0.7rem;color:var(--text-muted);margin-left:0.5rem;">3 contributors</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link-icon"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-category="creative,web" data-title="creative coding lab">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Creative Coding Lab" />
+        <div class="project-img-gradient"></div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags"><span class="badge badge-purple">Creative</span><span class="badge badge-cyan">Web</span></div>
+        <h3 class="project-title">Creative Coding Lab</h3>
+        <p class="project-desc">A collection of generative art and interactive experiments built with p5.js and Three.js by the community. [Placeholder]</p>
+        <div class="project-footer">
+          <div class="project-contributors">
+            <div class="contributor-avatar" style="font-size:0.65rem;background:rgba(167,139,250,0.15);color:var(--accent-purple);">I</div>
+            <div class="contributor-avatar" style="font-size:0.65rem;background:rgba(167,139,250,0.15);color:var(--accent-purple);">J</div>
+            <span style="font-size:0.7rem;color:var(--text-muted);margin-left:0.5rem;">7 contributors</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link-icon"><i class="fab fa-github"></i></a>
+            <a href="#" class="project-link-icon"><i class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-category="app,ai" data-title="campus navigation app">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&q=80" alt="Campus Navigation App" />
+        <div class="project-img-gradient"></div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags"><span class="badge badge-blue">App</span><span class="badge badge-green">Maps</span></div>
+        <h3 class="project-title">Campus Navigation App</h3>
+        <p class="project-desc">Indoor campus navigation app with AR overlays for finding classrooms, labs, and facilities. [Placeholder]</p>
+        <div class="project-footer">
+          <div class="project-contributors">
+            <div class="contributor-avatar" style="font-size:0.65rem;background:rgba(59,130,246,0.15);color:var(--accent-blue);">K</div>
+            <span style="font-size:0.7rem;color:var(--text-muted);margin-left:0.5rem;">4 contributors</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link-icon"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-category="other,web" data-title="open source noticeboard">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=600&q=80" alt="Open Source Noticeboard" />
+        <div class="project-img-gradient"></div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags"><span class="badge badge-teal">Open Source</span><span class="badge badge-cyan">Web</span></div>
+        <h3 class="project-title">Open Source Noticeboard</h3>
+        <p class="project-desc">A simple, open-source digital noticeboard system that can be self-hosted by any student organization. [Placeholder]</p>
+        <div class="project-footer">
+          <div class="project-contributors">
+            <div class="contributor-avatar" style="font-size:0.65rem;background:rgba(20,184,166,0.15);color:var(--accent-teal);">L</div>
+            <div class="contributor-avatar" style="font-size:0.65rem;background:rgba(20,184,166,0.15);color:var(--accent-teal);">M</div>
+            <span style="font-size:0.7rem;color:var(--text-muted);margin-left:0.5rem;">2 contributors</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link-icon"><i class="fab fa-github"></i></a>
+            <a href="#" class="project-link-icon"><i class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-category="ai,creative" data-title="sign language converter">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1558403194-611308249627?w=600&q=80" alt="Sign Language Converter" />
+        <div class="project-img-gradient"></div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags"><span class="badge badge-purple">AI / ML</span><span class="badge badge-green">Accessibility</span></div>
+        <h3 class="project-title">Sign Language Converter</h3>
+        <p class="project-desc">Real-time sign language to text converter using computer vision — an accessibility project built for impact. [Placeholder]</p>
+        <div class="project-footer">
+          <div class="project-contributors">
+            <div class="contributor-avatar" style="font-size:0.65rem;background:rgba(167,139,250,0.15);color:var(--accent-purple);">N</div>
+            <div class="contributor-avatar" style="font-size:0.65rem;background:rgba(167,139,250,0.15);color:var(--accent-purple);">O</div>
+            <span style="font-size:0.7rem;color:var(--text-muted);margin-left:0.5rem;">6 contributors</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link-icon"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SUBMIT PROJECT CTA -->
+<section class="submit-project-cta">
+  <div class="submit-cta-card">
+    <div class="section-label" style="justify-content:center;margin-bottom:1rem;">Got Something Built?</div>
+    <h2 class="display-md reveal" style="margin-bottom:1rem;">Have something<br/>you <span class="highlight">built</span>?</h2>
+    <p class="reveal reveal-delay-1" style="color:var(--text-secondary);margin-bottom:2rem;">
+      Submit your project to be featured in the Maker Kootam community archive.
+      Any project — web, app, hardware, AI, or anything creative.
+    </p>
+    <a href="contact.html" class="btn btn-primary reveal reveal-delay-2">Submit Your Project →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo"><div class="nav-logo-icon">T</div><div class="nav-logo-text">TinkerHub CET<span>College of Engineering, Trivandrum</span></div></a>
+        <div class="footer-tagline">Build • Learn • Create • Together</div>
+        <p class="footer-desc">A community of curious minds, makers and dreamers.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Navigate</h4><ul>
+        <li><a href="index.html">→ Home</a></li><li><a href="about.html">→ About</a></li>
+        <li><a href="events.html">→ Events</a></li><li><a href="projects.html">→ Projects</a></li>
+        <li><a href="team.html">→ People</a></li><li><a href="history.html">→ History</a></li>
+        <li><a href="contact.html">→ Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Community</h4><ul>
+        <li><a href="events.html">→ Upcoming Events</a></li>
+        <li><a href="projects.html">→ Maker Kootam</a></li>
+        <li><a href="history.html">→ Our History</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Get in Touch</h4>
+        <div class="footer-contact-item"><span class="footer-contact-icon"><i class="fas fa-envelope"></i></span><a href="mailto:tinkerhub@cet.ac.in">tinkerhub@cet.ac.in</a></div>
+        <div class="footer-contact-item"><span class="footer-contact-icon"><i class="fas fa-map-marker-alt"></i></span><p>CET, Thiruvananthapuram, Kerala</p></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 TinkerHub CET. Made with <span>♥</span> by the community.</p>
+      <p id="easterEgg" class="footer-easter">✦ Tinker Mode</p>
+    </div>
+  </div>
+</footer>
+<div class="easter-toast" id="easterToast">🔧 You found the Tinker Mode!<br/><strong>Keep building. Keep learning.</strong></div>
+
+<script src="js/main.js"></script>
+<script src="js/projects.js"></script>
+</body>
+</html>
