@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="css/footer.css" />
   <link rel="stylesheet" href="css/about.css" />
   <link rel="stylesheet" href="css/history.css" />
+  <link rel="stylesheet" href="css/creative.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
@@ -33,6 +34,9 @@
       <li><a href="team.html">People</a></li><li><a href="history.html" class="active">History</a></li><li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="nav-right">
+      <button class="cmd-k-trigger" id="cmdKTrigger" aria-label="Open command palette">
+        <kbd>⌘K</kbd> <span>Quick Find</span>
+      </button>
       <a href="contact.html" class="btn btn-primary btn-sm">Join Us</a>
       <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
     </div>
@@ -331,6 +335,101 @@
   </div>
 </section>
 
+<!-- TIME CAPSULE & DIGITAL ARCHIVE -->
+<section class="archive-vault-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <div class="section-label" style="justify-content:center;">Digital Vault</div>
+      <h2 class="display-md reveal">The TinkerHub <span class="highlight">Time Capsule</span></h2>
+      <p class="reveal reveal-delay-1" style="color:var(--text-secondary);max-width:560px;margin:1rem auto 0;">
+        Relics, stickers, inside jokes, and artifacts that capture seven years of community memories.
+      </p>
+    </div>
+
+    <div class="archive-grid">
+
+      <!-- Artifact 1 -->
+      <div class="archive-card reveal reveal-delay-1">
+        <div class="archive-img">
+          <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=600&q=80" alt="First Sticker 2017" />
+          <div class="archive-stamp">ARTIFACT #01</div>
+        </div>
+        <div class="archive-body">
+          <div class="archive-year">FOUNDING · 2017</div>
+          <h3 class="archive-title">🏷️ The Original Vinyl Sticker</h3>
+          <p class="archive-desc">Hand-cut vinyl stickers distributed during our very first meet at the CET diamond jubilee stage. Some are still stuck to library laptops.</p>
+        </div>
+      </div>
+
+      <!-- Artifact 2 -->
+      <div class="archive-card reveal reveal-delay-2">
+        <div class="archive-img">
+          <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&q=80" alt="Drishti 2019 Tee" />
+          <div class="archive-stamp">ARTIFACT #02</div>
+        </div>
+        <div class="archive-body">
+          <div class="archive-year">HACKATHON · 2019</div>
+          <h3 class="archive-title">👕 Drishti '19 Hackathon Tee</h3>
+          <p class="archive-desc">The midnight-black edition crewneck printed for our 48-hour hackathon. The back lists all 50 participant team names in monospace.</p>
+        </div>
+      </div>
+
+      <!-- Artifact 3 -->
+      <div class="archive-card reveal reveal-delay-3">
+        <div class="archive-img">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80" alt="The 3:42 AM Git Commit" />
+          <div class="archive-stamp">ARTIFACT #03</div>
+        </div>
+        <div class="archive-body">
+          <div class="archive-year">LORE · 2021</div>
+          <h3 class="archive-title">⚡ The Infamous 3:42 AM Commit</h3>
+          <p class="archive-desc">Commit message: <code>"it compiles and nobody breathe or touch anything"</code>. Shipped 18 minutes before competition submission.</p>
+        </div>
+      </div>
+
+      <!-- Artifact 4 -->
+      <div class="archive-card reveal reveal-delay-1">
+        <div class="archive-img">
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&q=80" alt="Discord Lounge 2020" />
+          <div class="archive-stamp">ARTIFACT #04</div>
+        </div>
+        <div class="archive-body">
+          <div class="archive-year">LOCKDOWN ERA · 2020</div>
+          <h3 class="archive-title">💬 Discord Voice Room #001</h3>
+          <p class="archive-desc">The 24/7 virtual study room that stayed connected through the pandemic, hosting over 1,200 hours of peer coding sessions.</p>
+        </div>
+      </div>
+
+      <!-- Artifact 5 -->
+      <div class="archive-card reveal reveal-delay-2">
+        <div class="archive-img">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80" alt="Hardware Breadboard 2022" />
+          <div class="archive-stamp">ARTIFACT #05</div>
+        </div>
+        <div class="archive-body">
+          <div class="archive-year">LAB PROTOTYPE · 2022</div>
+          <h3 class="archive-title">🔌 The Burnt ESP32 Breadboard</h3>
+          <p class="archive-desc">Our first connected IoT sensor setup in the department lab. Smelled strongly of melted plastic, but transmitted telemetry flawlessly.</p>
+        </div>
+      </div>
+
+      <!-- Artifact 6 -->
+      <div class="archive-card reveal reveal-delay-3">
+        <div class="archive-img">
+          <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&q=80" alt="Drishti 2026 Redesign" />
+          <div class="archive-stamp">CURRENT · 2026</div>
+        </div>
+        <div class="archive-body">
+          <div class="archive-year">REVOLUTION · 2026</div>
+          <h3 class="archive-title">🚀 Drishti 2026 Redesign</h3>
+          <p class="archive-desc">The digital home reimagined from the ground up with interactive terminal tools, Maker Kootam archives, and full student ownership.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section style="padding:4rem 2rem;text-align:center;">
   <div class="container">
@@ -389,5 +488,6 @@
 
 <script src="js/main.js"></script>
 <script src="js/history.js"></script>
+<script src="js/creative.js"></script>
 </body>
 </html>
