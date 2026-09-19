@@ -56,9 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
         </a>
 
         <div class="cmd-group-label">Interactive Actions &amp; Easter Eggs</div>
-        <div class="cmd-item" id="cmdActionGame" data-keyword="game play arcade bug hunter mini-game">
-          <div class="cmd-item-left"><div class="cmd-item-icon" style="color:var(--accent-green);"><i class="fas fa-gamepad"></i></div><span class="cmd-item-title">Play "Bug Hunter" Arcade Game</span></div>
-          <span class="cmd-item-badge" style="color:var(--accent-green);">Mini-Game ⚡</span>
+        <div class="cmd-item" id="cmdActionGame" data-keyword="game play arcade retro snake invaders breaker hopper mini-game">
+          <div class="cmd-item-left"><div class="cmd-item-icon" style="color:var(--accent-green);"><i class="fas fa-gamepad"></i></div><span class="cmd-item-title">Tinker Retro Arcade (5-in-1 Mini-Games)</span></div>
+          <span class="cmd-item-badge" style="color:var(--accent-green);">Arcade ⚡</span>
         </div>
         <div class="cmd-item" id="cmdActionMatrix" data-keyword="matrix rain code hacker theme terminal">
           <div class="cmd-item-left"><div class="cmd-item-icon" style="color:var(--accent-green);"><i class="fas fa-code"></i></div><span class="cmd-item-title">Toggle Cyber Matrix Code Rain</span></div>
@@ -89,6 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <button class="game-tab active" data-game="bughunter">👾 Bug Hunter</button>
         <button class="game-tab" data-game="cybersnake">🐍 Cyber Snake</button>
         <button class="game-tab" data-game="circuitbreaker">🧱 Circuit Breaker</button>
+        <button class="game-tab" data-game="cyberinvaders">🚀 Cyber Invaders</button>
+        <button class="game-tab" data-game="bithopper">🛸 Bit Hopper</button>
       </div>
 
       <div class="game-hud">
@@ -99,12 +101,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       <canvas id="gameCanvas" width="440" height="300"></canvas>
 
-      <!-- Mobile Virtual D-Pad -->
-      <div class="dpad-container" id="mobileDpad">
-        <button class="dpad-btn dpad-up" id="btnUp" aria-label="Up">▲</button>
-        <button class="dpad-btn dpad-left" id="btnLeft" aria-label="Left">◀</button>
-        <button class="dpad-btn dpad-down" id="btnDown" aria-label="Down">▼</button>
-        <button class="dpad-btn dpad-right" id="btnRight" aria-label="Right">▶</button>
+      <!-- Mobile Virtual Controls -->
+      <div class="virtual-controls-row">
+        <div class="dpad-container" id="mobileDpad">
+          <button class="dpad-btn dpad-up" id="btnUp" aria-label="Up">▲</button>
+          <button class="dpad-btn dpad-left" id="btnLeft" aria-label="Left">◀</button>
+          <button class="dpad-btn dpad-down" id="btnDown" aria-label="Down">▼</button>
+          <button class="dpad-btn dpad-right" id="btnRight" aria-label="Right">▶</button>
+        </div>
+        <button class="action-btn" id="btnAction" aria-label="Action / Fire / Jump">⚡ ACTION</button>
       </div>
 
       <div class="game-controls">
@@ -277,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ─── 6. RETRO ARCADE: 3-IN-1 MINI-GAMES ─────────────────────
+  // ─── 6. RETRO ARCADE: 5-IN-1 MINI-GAMES ─────────────────────
   const gameModal        = document.getElementById('gameModal');
   const gameClose        = document.getElementById('gameClose');
   const gameCanvas       = document.getElementById('gameCanvas');
@@ -289,14 +294,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const gameInstructions = document.getElementById('gameInstructions');
   const gameTabs         = document.querySelectorAll('.game-tab');
 
-  const btnUp    = document.getElementById('btnUp');
-  const btnDown  = document.getElementById('btnDown');
-  const btnLeft  = document.getElementById('btnLeft');
-  const btnRight = document.getElementById('btnRight');
+  const btnUp     = document.getElementById('btnUp');
+  const btnDown   = document.getElementById('btnDown');
+  const btnLeft   = document.getElementById('btnLeft');
+  const btnRight  = document.getElementById('btnRight');
+  const btnAction = document.getElementById('btnAction');
 
   const cmdActionGame = document.getElementById('cmdActionGame');
 
-  let activeGame = 'bughunter'; // 'bughunter' | 'cybersnake' | 'circuitbreaker'
+  let activeGame = 'bughunter'; // 'bughunter' | 'cybersnake' | 'circuitbreaker' | 'cyberinvaders' | 'bithopper'
   let isPlaying = false;
   let gameLoopId = null;
   let ctx = gameCanvas.getContext('2d');
@@ -324,6 +330,14 @@ document.addEventListener('DOMContentLoaded', () => {
         gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
         osc.start(now);
         osc.stop(now + 0.12);
+      } else if (type === 'laser') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(820, now);
+        osc.frequency.exponentialRampToValueAtTime(180, now + 0.1);
+        gain.gain.setValueAtTime(0.14, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+        osc.start(now);
+        osc.stop(now + 0.1);
       } else if (type === 'hit') {
         osc.type = 'sawtooth';
         osc.frequency.setValueAtTime(220, now);
@@ -361,6 +375,10 @@ document.addEventListener('DOMContentLoaded', () => {
       return parseInt(localStorage.getItem('tinker_snake_high') || 0, 10);
     } else if (game === 'circuitbreaker') {
       return parseInt(localStorage.getItem('tinker_breaker_high') || 0, 10);
+    } else if (game === 'cyberinvaders') {
+      return parseInt(localStorage.getItem('tinker_invaders_high') || 0, 10);
+    } else if (game === 'bithopper') {
+      return parseInt(localStorage.getItem('tinker_hopper_high') || 0, 10);
     }
     return 0;
   }
@@ -373,6 +391,10 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('tinker_snake_high', val);
     } else if (game === 'circuitbreaker') {
       localStorage.setItem('tinker_breaker_high', val);
+    } else if (game === 'cyberinvaders') {
+      localStorage.setItem('tinker_invaders_high', val);
+    } else if (game === 'bithopper') {
+      localStorage.setItem('tinker_hopper_high', val);
     }
   }
 
@@ -382,6 +404,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (activeGame === 'cybersnake') {
       hudLivesLabel.textContent = 'LENGTH:';
       hudLives.textContent = snake.length;
+    } else if (activeGame === 'bithopper') {
+      hudLivesLabel.textContent = 'STATUS:';
+      hudLives.textContent = 'FLYING ⚡';
     } else {
       hudLivesLabel.textContent = 'LIVES:';
       hudLives.textContent = '❤'.repeat(Math.max(0, lives));
@@ -458,6 +483,77 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // ─── GAME 4: CYBER INVADERS DATA ───────────────────────────
+  let invadersShip = { x: 198, y: 265, width: 44, height: 18, speed: 6.5 };
+  let playerLasers = [];
+  let invaders = [];
+  let invaderSquadronDir = 1;
+  let invaderBombs = [];
+  let lastFireTime = 0;
+
+  function initInvaders(baseY = 32) {
+    invaders = [];
+    const rows = 3;
+    const cols = 6;
+    const colSpacing = 48;
+    const rowSpacing = 26;
+    const startX = (gameCanvas.width - (cols * colSpacing)) / 2;
+
+    const config = [
+      { emoji: '👾', pts: 30 }, // Virus Alpha
+      { emoji: '👾', pts: 20 }, // Glitch Worm
+      { emoji: '🤖', pts: 10 }  // Rogue Drone
+    ];
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        invaders.push({
+          x: startX + c * colSpacing,
+          y: baseY + r * rowSpacing,
+          width: 24,
+          height: 20,
+          alive: true,
+          emoji: config[r].emoji,
+          pts: config[r].pts
+        });
+      }
+    }
+  }
+
+  function fireLaser() {
+    if (!isPlaying || activeGame !== 'cyberinvaders') return;
+    const now = Date.now();
+    if (now - lastFireTime < 240) return;
+    if (playerLasers.length >= 3) return;
+
+    lastFireTime = now;
+    playerLasers.push({
+      x: invadersShip.x + invadersShip.width / 2,
+      y: invadersShip.y - 4,
+      vy: -7.5
+    });
+    playSound('laser');
+  }
+
+  // ─── GAME 5: BIT HOPPER DATA ───────────────────────────────
+  let hopper = { x: 75, y: 130, radius: 12, vy: 0, gravity: 0.35, jumpStrength: -5.6 };
+  let hopperPillars = [];
+  let frameCounter = 0;
+
+  function jumpHopper() {
+    if (!isPlaying || activeGame !== 'bithopper') return;
+    hopper.vy = hopper.jumpStrength;
+    playSound('bounce');
+  }
+
+  function triggerAction() {
+    if (activeGame === 'cyberinvaders') {
+      fireLaser();
+    } else if (activeGame === 'bithopper') {
+      jumpHopper();
+    }
+  }
+
   // ─── GAME INITIALIZATION ────────────────────────────────────
   function setupGame(gameName) {
     stopGameLoop();
@@ -503,6 +599,27 @@ document.addEventListener('DOMContentLoaded', () => {
         Desktop: Use <strong>Arrow Keys</strong> or <strong>A / D</strong> · Mobile: Tap sides or use D-Pad<br/>
         Bounce CET photon beam to shatter 32 cyber logic gates!
       `;
+    } else if (gameName === 'cyberinvaders') {
+      lives = 3;
+      invadersShip.x = (gameCanvas.width - invadersShip.width) / 2;
+      playerLasers = [];
+      invaderBombs = [];
+      invaderSquadronDir = 1;
+      initInvaders(32);
+      gameInstructions.innerHTML = `
+        Desktop: <strong>A / D / Arrows</strong> to steer · <strong>Space / Up</strong> to fire laser<br/>
+        Mobile: D-Pad ◀ ▶ + <strong>⚡ ACTION</strong> button · Annihilate invading virus squadron!
+      `;
+    } else if (gameName === 'bithopper') {
+      lives = 1;
+      hopper.y = 130;
+      hopper.vy = 0;
+      hopperPillars = [];
+      frameCounter = 0;
+      gameInstructions.innerHTML = `
+        Desktop: Press <strong>Space / Up Arrow</strong> to hop · Mobile: Tap canvas or <strong>⚡ ACTION</strong><br/>
+        Navigate the glowing CET cyber firewall gates!
+      `;
     }
 
     updateHud();
@@ -541,6 +658,12 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (activeGame === 'circuitbreaker') {
       titleText = 'CIRCUIT BREAKER';
       subtitle = 'Shatter logic gates with photon pulse';
+    } else if (activeGame === 'cyberinvaders') {
+      titleText = 'CYBER INVADERS';
+      subtitle = 'Defend CET core from viral infection';
+    } else if (activeGame === 'bithopper') {
+      titleText = 'BIT HOPPER';
+      subtitle = 'Flap binary drone through firewalls';
     }
 
     ctx.fillText(`🎮 ${titleText}`, gameCanvas.width / 2, 120);
@@ -611,6 +734,20 @@ document.addEventListener('DOMContentLoaded', () => {
       ball.vx = (Math.random() > 0.5 ? 3.5 : -3.5);
       ball.vy = -3.8;
       initBricks();
+    } else if (activeGame === 'cyberinvaders') {
+      lives = 3;
+      invadersShip.x = (gameCanvas.width - invadersShip.width) / 2;
+      playerLasers = [];
+      invaderBombs = [];
+      invaderSquadronDir = 1;
+      initInvaders(32);
+      lastFireTime = 0;
+    } else if (activeGame === 'bithopper') {
+      lives = 1;
+      hopper.y = 130;
+      hopper.vy = 0;
+      hopperPillars = [];
+      frameCounter = 0;
     }
     updateHud();
     gameStartBtn.textContent = 'Restart Game';
@@ -633,10 +770,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (k === 'ArrowUp' || k.toLowerCase() === 'w') {
       moveUp = true;
       if (activeGame === 'cybersnake' && snakeDir.y === 0) nextSnakeDir = { x: 0, y: -1 };
+      triggerAction();
     }
     if (k === 'ArrowDown' || k.toLowerCase() === 's') {
       moveDown = true;
       if (activeGame === 'cybersnake' && snakeDir.y === 0) nextSnakeDir = { x: 0, y: 1 };
+    }
+    if (k === ' ' || k === 'Spacebar') {
+      e.preventDefault();
+      triggerAction();
     }
   });
 
@@ -648,7 +790,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (k === 'ArrowDown' || k.toLowerCase() === 's') moveDown = false;
   });
 
-  // Mobile Virtual D-Pad Events
+  // Mobile Virtual D-Pad & Action Button Events
   function handleDpadPress(dir) {
     if (dir === 'left') {
       moveLeft = true;
@@ -659,6 +801,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (dir === 'up') {
       moveUp = true;
       if (activeGame === 'cybersnake' && snakeDir.y === 0) nextSnakeDir = { x: 0, y: -1 };
+      triggerAction();
     } else if (dir === 'down') {
       moveDown = true;
       if (activeGame === 'cybersnake' && snakeDir.y === 0) nextSnakeDir = { x: 0, y: 1 };
@@ -693,6 +836,13 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('pointerleave', endHandler);
   });
 
+  if (btnAction) {
+    btnAction.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      triggerAction();
+    });
+  }
+
   // Touch screen tap/drag on canvas
   gameCanvas.addEventListener('pointerdown', (e) => {
     const rect = gameCanvas.getBoundingClientRect();
@@ -703,6 +853,12 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (activeGame === 'circuitbreaker') {
       if (touchX < paddle.x + paddle.width / 2) moveLeft = true;
       else moveRight = true;
+    } else if (activeGame === 'cyberinvaders') {
+      if (touchX < invadersShip.x) moveLeft = true;
+      else if (touchX > invadersShip.x + invadersShip.width) moveRight = true;
+      fireLaser();
+    } else if (activeGame === 'bithopper') {
+      jumpHopper();
     }
   });
 
@@ -715,6 +871,8 @@ document.addEventListener('DOMContentLoaded', () => {
         player.x = Math.max(0, Math.min(gameCanvas.width - player.width, touchX - player.width / 2));
       } else if (activeGame === 'circuitbreaker') {
         paddle.x = Math.max(0, Math.min(gameCanvas.width - paddle.width, touchX - paddle.width / 2));
+      } else if (activeGame === 'cyberinvaders') {
+        invadersShip.x = Math.max(0, Math.min(gameCanvas.width - invadersShip.width, touchX - invadersShip.width / 2));
       }
     }
   });
@@ -736,6 +894,10 @@ document.addEventListener('DOMContentLoaded', () => {
       updateAndDrawCyberSnake(timestamp);
     } else if (activeGame === 'circuitbreaker') {
       updateAndDrawCircuitBreaker();
+    } else if (activeGame === 'cyberinvaders') {
+      updateAndDrawCyberInvaders();
+    } else if (activeGame === 'bithopper') {
+      updateAndDrawBitHopper();
     }
 
     if (isPlaying) {
@@ -769,7 +931,7 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let x = 0; x < gameCanvas.width; x += 30) {
       ctx.beginPath();
       ctx.moveTo(x, 0);
-      ctx.lineTo(x, gameCanvas.height);
+      ctx.lineTo(gameCanvas.height);
       ctx.stroke();
     }
 
@@ -1067,6 +1229,316 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
     ctx.fill();
     ctx.shadowBlur = 0;
+  }
+
+  // ─── GAME 4 LOOP: CYBER INVADERS ───────────────────────────
+  function updateAndDrawCyberInvaders() {
+    // Move player ship
+    if (moveLeft && invadersShip.x > 0) invadersShip.x -= invadersShip.speed;
+    if (moveRight && invadersShip.x + invadersShip.width < gameCanvas.width) invadersShip.x += invadersShip.speed;
+
+    // Update Player Lasers
+    for (let i = playerLasers.length - 1; i >= 0; i--) {
+      const l = playerLasers[i];
+      l.y += l.vy;
+      if (l.y < -10) {
+        playerLasers.splice(i, 1);
+        continue;
+      }
+      // Check laser collision with invaders
+      for (let j = 0; j < invaders.length; j++) {
+        const inv = invaders[j];
+        if (!inv.alive) continue;
+        if (
+          l.x >= inv.x &&
+          l.x <= inv.x + inv.width &&
+          l.y >= inv.y &&
+          l.y <= inv.y + inv.height
+        ) {
+          inv.alive = false;
+          score += inv.pts;
+          playSound('pickup');
+          if (score > getHighScore('cyberinvaders')) {
+            saveHighScore('cyberinvaders', score);
+          }
+          updateHud();
+          playerLasers.splice(i, 1);
+          break;
+        }
+      }
+    }
+
+    // Count alive invaders & check boundaries
+    let aliveCount = 0;
+    let minX = 999;
+    let maxX = -999;
+    let maxY = 0;
+    invaders.forEach(inv => {
+      if (!inv.alive) return;
+      aliveCount++;
+      if (inv.x < minX) minX = inv.x;
+      if (inv.x + inv.width > maxX) maxX = inv.x + inv.width;
+      if (inv.y + inv.height > maxY) maxY = inv.y + inv.height;
+    });
+
+    if (aliveCount === 0) {
+      // Wave cleared!
+      score += 150;
+      playSound('pickup');
+      initInvaders(32);
+      invaderSquadronDir = 1;
+      updateHud();
+    } else {
+      // Speed scales up as squadron thins out
+      const stepSpeed = 0.9 + (18 - aliveCount) * 0.14;
+      let stepDown = false;
+
+      if (invaderSquadronDir === 1 && maxX >= gameCanvas.width - 15) {
+        invaderSquadronDir = -1;
+        stepDown = true;
+      } else if (invaderSquadronDir === -1 && minX <= 15) {
+        invaderSquadronDir = 1;
+        stepDown = true;
+      }
+
+      invaders.forEach(inv => {
+        if (!inv.alive) return;
+        inv.x += invaderSquadronDir * stepSpeed;
+        if (stepDown) inv.y += 14;
+      });
+
+      // Check if invaders reached player level
+      if (maxY >= invadersShip.y - 6) {
+        playSound('hit');
+        triggerGameOver();
+        return;
+      }
+
+      // Random invader bomb drop
+      if (Math.random() < 0.025 && invaderBombs.length < 4) {
+        const aliveInvaders = invaders.filter(inv => inv.alive);
+        if (aliveInvaders.length > 0) {
+          const shooter = aliveInvaders[Math.floor(Math.random() * aliveInvaders.length)];
+          invaderBombs.push({ x: shooter.x + shooter.width / 2, y: shooter.y + shooter.height, vy: 3.4 });
+        }
+      }
+    }
+
+    // Update invader bombs
+    for (let i = invaderBombs.length - 1; i >= 0; i--) {
+      const b = invaderBombs[i];
+      b.y += b.vy;
+      if (b.y > gameCanvas.height + 10) {
+        invaderBombs.splice(i, 1);
+        continue;
+      }
+      // Check collision with player
+      if (
+        b.x >= invadersShip.x &&
+        b.x <= invadersShip.x + invadersShip.width &&
+        b.y >= invadersShip.y &&
+        b.y <= invadersShip.y + invadersShip.height
+      ) {
+        lives--;
+        playSound('hit');
+        updateHud();
+        invaderBombs.splice(i, 1);
+        if (lives <= 0) {
+          triggerGameOver();
+          return;
+        }
+      }
+    }
+
+    // Render Cyber Invaders frame
+    ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+
+    // Twinkling cyber space stars
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+    for (let s = 0; s < 25; s++) {
+      const sx = (s * 47 + Date.now() * 0.01) % gameCanvas.width;
+      const sy = (s * 31) % gameCanvas.height;
+      ctx.fillRect(sx, sy, 2, 2);
+    }
+
+    // Draw player ship
+    ctx.fillStyle = '#A8FF3E';
+    ctx.shadowColor = '#A8FF3E';
+    ctx.shadowBlur = 10;
+    ctx.font = 'bold 15px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('▲CET▲', invadersShip.x + invadersShip.width / 2, invadersShip.y + 14);
+    ctx.shadowBlur = 0;
+
+    // Draw Lasers
+    ctx.fillStyle = '#22D3EE';
+    ctx.shadowColor = '#22D3EE';
+    ctx.shadowBlur = 8;
+    playerLasers.forEach(l => {
+      ctx.fillRect(l.x - 1.5, l.y, 3, 10);
+    });
+    ctx.shadowBlur = 0;
+
+    // Draw Bombs
+    ctx.fillStyle = '#F43F5E';
+    ctx.shadowColor = '#F43F5E';
+    ctx.shadowBlur = 6;
+    invaderBombs.forEach(b => {
+      ctx.fillRect(b.x - 2, b.y, 4, 8);
+    });
+    ctx.shadowBlur = 0;
+
+    // Draw Invaders
+    ctx.font = '16px serif';
+    ctx.textAlign = 'center';
+    invaders.forEach(inv => {
+      if (!inv.alive) return;
+      ctx.fillText(inv.emoji, inv.x + inv.width / 2, inv.y + 16);
+    });
+  }
+
+  // ─── GAME 5 LOOP: BIT HOPPER ───────────────────────────────
+  function updateAndDrawBitHopper() {
+    frameCounter++;
+
+    // Hopper physics
+    hopper.vy += hopper.gravity;
+    hopper.y += hopper.vy;
+
+    // Spawn pillars
+    if (frameCounter % 95 === 0) {
+      const minHeight = 40;
+      const maxHeight = 160;
+      const topHeight = Math.floor(minHeight + Math.random() * (maxHeight - minHeight));
+      hopperPillars.push({
+        x: gameCanvas.width + 10,
+        width: 44,
+        topHeight: topHeight,
+        gap: 90,
+        passed: false
+      });
+    }
+
+    // Update pillars & check collisions
+    for (let i = hopperPillars.length - 1; i >= 0; i--) {
+      const p = hopperPillars[i];
+      p.x -= 2.4;
+
+      // Pass check
+      if (!p.passed && p.x + p.width < hopper.x) {
+        p.passed = true;
+        score += 10;
+        playSound('pickup');
+        if (score > getHighScore('bithopper')) {
+          saveHighScore('bithopper', score);
+        }
+        updateHud();
+      }
+
+      // Collision check with top pillar
+      const hitX = hopper.x + hopper.radius > p.x && hopper.x - hopper.radius < p.x + p.width;
+      const hitTop = hopper.y - hopper.radius < p.topHeight;
+      const hitBottom = hopper.y + hopper.radius > p.topHeight + p.gap;
+
+      if (hitX && (hitTop || hitBottom)) {
+        playSound('hit');
+        triggerGameOver();
+        return;
+      }
+
+      // Remove offscreen
+      if (p.x + p.width < -10) {
+        hopperPillars.splice(i, 1);
+      }
+    }
+
+    // Boundary collisions
+    if (hopper.y - hopper.radius <= 0 || hopper.y + hopper.radius >= gameCanvas.height - 8) {
+      playSound('hit');
+      triggerGameOver();
+      return;
+    }
+
+    // Render frame
+    ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+
+    // Cyber digital stream background
+    ctx.strokeStyle = 'rgba(34, 211, 238, 0.05)';
+    ctx.lineWidth = 1;
+    for (let y = 0; y < gameCanvas.height; y += 30) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(gameCanvas.width, y);
+      ctx.stroke();
+    }
+
+    // Draw Pillars (Firewalls)
+    hopperPillars.forEach(p => {
+      // Top pillar
+      ctx.fillStyle = '#071A2E';
+      ctx.fillRect(p.x, 0, p.width, p.topHeight);
+      ctx.strokeStyle = '#22D3EE';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(p.x, 0, p.width, p.topHeight);
+
+      // Top pillar glowing cap
+      ctx.fillStyle = '#22D3EE';
+      ctx.shadowColor = '#22D3EE';
+      ctx.shadowBlur = 8;
+      ctx.fillRect(p.x - 2, p.topHeight - 8, p.width + 4, 8);
+      ctx.shadowBlur = 0;
+
+      // Bottom pillar
+      const bottomY = p.topHeight + p.gap;
+      const bottomHeight = gameCanvas.height - bottomY;
+      ctx.fillStyle = '#071A2E';
+      ctx.fillRect(p.x, bottomY, p.width, bottomHeight);
+      ctx.strokeStyle = '#22D3EE';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(p.x, bottomY, p.width, bottomHeight);
+
+      // Bottom pillar glowing cap
+      ctx.fillStyle = '#22D3EE';
+      ctx.shadowColor = '#22D3EE';
+      ctx.shadowBlur = 8;
+      ctx.fillRect(p.x - 2, bottomY, p.width + 4, 8);
+      ctx.shadowBlur = 0;
+    });
+
+    // Floor line
+    ctx.strokeStyle = '#A8FF3E';
+    ctx.lineWidth = 2;
+    ctx.shadowColor = '#A8FF3E';
+    ctx.shadowBlur = 8;
+    ctx.beginPath();
+    ctx.moveTo(0, gameCanvas.height - 4);
+    ctx.lineTo(gameCanvas.width, gameCanvas.height - 4);
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    // Draw Hopper Player
+    ctx.save();
+    ctx.translate(hopper.x, hopper.y);
+    const tilt = Math.max(-0.6, Math.min(0.6, hopper.vy * 0.08));
+    ctx.rotate(tilt);
+
+    // Glowing orb
+    ctx.fillStyle = '#A8FF3E';
+    ctx.shadowColor = '#A8FF3E';
+    ctx.shadowBlur = 14;
+    ctx.beginPath();
+    ctx.arc(0, 0, hopper.radius, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Binary drone text inside
+    ctx.fillStyle = '#020710';
+    ctx.font = 'bold 9px monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('01', 0, 0);
+
+    ctx.restore();
   }
 
   // ─── GAME OVER ──────────────────────────────────────────────
