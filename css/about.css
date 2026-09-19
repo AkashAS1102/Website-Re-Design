@@ -163,23 +163,36 @@
 }
 
 .pillar-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--radius-md);
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--border);
+  width: 76px;
+  height: 76px;
+  border-radius: var(--radius-lg);
+  background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--pillar-color) 14%, transparent), rgba(4, 13, 26, 0.7));
+  border: 1.5px solid color-mix(in srgb, var(--pillar-color) 35%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1.25rem;
-  font-size: 1.4rem;
-  color: var(--pillar-color);
+  margin: 0 auto 1.5rem;
   transition: var(--transition);
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.12);
+}
+
+.pillar-svg {
+  width: 46px;
+  height: 46px;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
 }
 
 .pillar-card:hover .pillar-icon {
-  background: rgba(255,255,255,0.08);
-  box-shadow: 0 0 20px rgba(168,255,62,0.15);
+  border-color: var(--pillar-color);
+  box-shadow: 0 0 30px color-mix(in srgb, var(--pillar-color) 40%, transparent), 
+              inset 0 0 15px color-mix(in srgb, var(--pillar-color) 20%, transparent);
+  transform: translateY(-3px) scale(1.05);
+}
+
+.pillar-card:hover .pillar-svg {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 10px var(--pillar-color));
 }
 
 .pillar-title {
