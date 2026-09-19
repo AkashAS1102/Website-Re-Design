@@ -4,7 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="About TinkerHub CET — A community built by students, for students." />
+  <meta property="og:title" content="About — TinkerHub CET" />
+  <meta property="og:description" content="A community built by students, for students at College of Engineering Trivandrum." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
   <title>About — TinkerHub CET</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/nav.css" />
   <link rel="stylesheet" href="css/footer.css" />
@@ -12,6 +19,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="page-progress" id="pageProgress"></div>
 
 <!-- NAVBAR -->
 <nav class="navbar scrolled" id="navbar">
@@ -47,7 +56,7 @@
 </div>
 
 <!-- PAGE HERO -->
-<section class="page-hero">
+<section class="page-hero" id="main-content">
   <div class="gradient-orb orb-cyan"  style="width:500px;height:500px;top:-100px;right:-100px;opacity:0.6;"></div>
   <div class="gradient-orb orb-green" style="width:300px;height:300px;bottom:-50px;left:5%;opacity:0.4;"></div>
 
@@ -313,6 +322,11 @@
   </div>
 </footer>
 <div class="easter-toast" id="easterToast">🔧 You found the Tinker Mode!<br/><strong>Keep building. Keep learning.</strong></div>
+
+<!-- Back to top button -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
 
 <script src="js/main.js"></script>
 </body>

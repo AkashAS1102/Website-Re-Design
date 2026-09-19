@@ -122,3 +122,57 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// ─── SCROLL PROGRESS & BACK TO TOP ───────────────────────────
+const pageProgress = document.getElementById('pageProgress');
+const backToTopBtn = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  
+  if (pageProgress && docHeight > 0) {
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    pageProgress.style.width = scrollPercent + '%';
+  }
+
+  if (backToTopBtn) {
+    if (scrollTop > 350) {
+      backToTopBtn.classList.add('visible');
+    } else {
+      backToTopBtn.classList.remove('visible');
+    }
+  }
+}, { passive: true });
+
+if (backToTopBtn) {
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// ─── COPY EMAIL ON CLICK ─────────────────────────────────────
+document.querySelectorAll('a[href^="mailto:"]').forEach(mailLink => {
+  mailLink.addEventListener('click', (e) => {
+    const email = mailLink.getAttribute('href').replace('mailto:', '');
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(email).then(() => {
+        showCopyTooltip('Email copied to clipboard! ✓');
+      }).catch(() => {});
+    }
+  });
+});
+
+function showCopyTooltip(msg) {
+  let tooltip = document.getElementById('copyTooltip');
+  if (!tooltip) {
+    tooltip = document.createElement('div');
+    tooltip.id = 'copyTooltip';
+    tooltip.className = 'copy-tooltip';
+    document.body.appendChild(tooltip);
+  }
+  tooltip.textContent = msg;
+  tooltip.classList.add('show');
+  setTimeout(() => tooltip.classList.remove('show'), 2500);
+}
+
