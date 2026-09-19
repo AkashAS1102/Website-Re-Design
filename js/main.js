@@ -87,16 +87,6 @@ const counterObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
 
-// ─── EASTER EGG ─────────────────────────────────────────────
-const easterTrigger = document.getElementById('easterEgg');
-const easterToast   = document.getElementById('easterToast');
-
-if (easterTrigger && easterToast) {
-  easterTrigger.addEventListener('click', () => {
-    easterToast.classList.add('show');
-    setTimeout(() => easterToast.classList.remove('show'), 5000);
-  });
-}
 
 // ─── SMOOTH PAGE TRANSITIONS ─────────────────────────────────
 document.querySelectorAll('a[href]').forEach(link => {
