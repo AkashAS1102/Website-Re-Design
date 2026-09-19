@@ -264,6 +264,37 @@
   align-items: center;
   gap: 0.5rem;
 }
+.game-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+.game-tab {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  color: var(--text-secondary);
+  padding: 0.35rem 0.85rem;
+  font-size: 0.78rem;
+  font-family: var(--font-heading);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.game-tab:hover {
+  color: var(--text-primary);
+  border-color: var(--border-accent);
+}
+.game-tab.active {
+  background: var(--accent-green);
+  color: #000;
+  font-weight: 700;
+  border-color: var(--accent-green);
+  box-shadow: 0 0 15px rgba(168, 255, 62, 0.4);
+}
+
 .game-hud {
   display: flex;
   justify-content: space-around;
@@ -290,8 +321,45 @@
   position: relative;
   z-index: 1;
 }
+
+/* Mobile Virtual D-Pad */
+.dpad-container {
+  display: grid;
+  grid-template-columns: repeat(3, 42px);
+  grid-template-rows: repeat(2, 38px);
+  gap: 6px;
+  justify-content: center;
+  margin: 0.75rem auto 0;
+  position: relative;
+  z-index: 1;
+}
+.dpad-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.dpad-btn:active {
+  background: var(--accent-green);
+  color: #000;
+  transform: scale(0.92);
+}
+.dpad-up    { grid-column: 2; grid-row: 1; }
+.dpad-left  { grid-column: 1; grid-row: 2; }
+.dpad-down  { grid-column: 2; grid-row: 2; }
+.dpad-right { grid-column: 3; grid-row: 2; }
+
 .game-controls {
-  margin-top: 1rem;
+  margin-top: 0.85rem;
   display: flex;
   gap: 0.5rem;
   justify-content: center;
