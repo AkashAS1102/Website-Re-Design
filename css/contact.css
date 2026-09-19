@@ -140,22 +140,32 @@
 .campus-visual {
   border-radius: var(--radius-xl);
   overflow: hidden;
-  height: 200px;
-  border: 1px solid var(--border);
+  height: 240px;
+  border: 1.5px solid var(--border-accent);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   position: relative;
+  transition: var(--transition);
+}
+.campus-visual:hover {
+  border-color: var(--accent-green);
+  box-shadow: 0 12px 35px rgba(168, 255, 62, 0.2);
 }
 
 .campus-visual img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.campus-visual:hover img {
+  transform: scale(1.04);
 }
 
 .campus-visual-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg,
-    rgba(168, 255, 62, 0.1) 0%,
+    rgba(168, 255, 62, 0.08) 0%,
     transparent 60%);
 }
 
